@@ -1,0 +1,213 @@
+$dark: #19191c;
+$lessDark: #303035;
+$gutter: 30px;
+$minWidth: 320px;
+$maxWidth: 1fr;
+$ratio: 115.25%;
+
+$font-main: 16px;
+$font-1: $font-main * 1.25;
+$font-2: $font-main * 3;
+$color-grey: #8f8f9f;
+$color-white : #fff2f7;
+
+$border-radius-preview-article: 8px;
+
+@mixin author {
+    color: $color-grey;
+    &:before{
+        content: '- ';
+    }
+    &:after {
+        content: ' -';
+    }
+}
+
+@mixin category {
+    color: #1bac48;
+    &:before{
+        content: '@';
+    }
+}
+
+* {
+    box-sizing: border-box;
+    outline: unset;
+}
+html, body {
+    font-family: 'Titillium Web', sans-serif;
+    box-sizing: border-box;
+    font-size: $font-main;
+    margin: 0;
+    background: $dark;
+}
+
+body {
+    padding: 30px 50px 50px 50px;
+}
+nav {
+    ul {
+        display: flex;
+        justify-content: center;
+    }
+    a {
+        position: relative;
+        //&:visited {
+        //    background-color: red;
+        //    &:after {
+        //        position: absolute;
+        //        bottom: -5px;
+        //        background-color: $color-white;
+        //        width: 100%;
+        //        height: 2px;
+        //    }
+        //}
+        text-decoration: unset;
+    }
+    li {
+        color: white;
+        font-size: $font-1;
+        text-transform: uppercase;
+        list-style: none;
+        margin-right: 10px;
+    }
+}
+
+#all-preview-articles {
+    display: grid;
+    grid-gap: $gutter;
+    grid-template-columns: repeat(auto-fill, minmax($minWidth, $maxWidth));
+    .preview-article-container-global {
+        width: 100%;
+    }
+}
+.preview-article-container {
+    background: $lessDark;
+    border-radius: $border-radius-preview-article;
+    padding: 10px;
+    color: $color-white;
+    aside {
+        margin: 10px 0;
+    }
+}
+.preview-article-container-global {
+    display: flex;
+    flex-direction: column;
+    min-width: $minWidth;
+}
+.preview-article-link {
+    display: block;
+    text-decoration: unset;
+    outline: unset;
+}
+.preview-article-header {
+    $sizePicture : 50px;
+    display: flex;
+    img {
+        height: $sizePicture;
+        width: $sizePicture;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+}
+.preview-article-title {
+    font-size:$font-1;
+}
+.preview-article-category {
+    @include category;
+}
+.preview-article-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* number of lines to show */
+}
+.preview-article-picture {
+    border-radius: $border-radius-preview-article;
+    object-fit: cover;
+    width: 100%;
+    max-height: 230px;
+}
+.preview-article-author {
+    text-decoration: unset;
+    margin-right: 10px;
+    @include author;
+}
+
+.categories-container {
+    color: $color-grey;
+}
+
+.category-articles {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    margin-left: 50px;
+    .preview-article-container-global {
+        margin-right: $gutter;
+    }
+}
+
+#backButton {
+    $sizeBackButton: 40px;
+    height: $sizeBackButton;
+    width: $sizeBackButton;
+    fill: $color-white;
+    cursor: pointer;
+}
+
+#article-container {
+    color: $color-white;
+    background-color: $lessDark;
+    border-radius: $border-radius-preview-article;
+    padding: 40px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#article-author-thumbnail {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    img {
+        $sizeAuthorThumbnail: 150px;
+
+        width: $sizeAuthorThumbnail;
+        height: $sizeAuthorThumbnail;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+#article-title {
+    margin-bottom: 60px;
+    font-size: $font-2;
+}
+
+#article-content {
+    font-size: $font-1;
+}
+
+#article-author {
+    @include author;
+}
+
+#article-category {
+    @include category;
+}
+
+#article-picture {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: $border-radius-preview-article;
+    margin-bottom: 30px;
+}
+
+#article-aside-data {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
